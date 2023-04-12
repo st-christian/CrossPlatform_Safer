@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'AddDrinkPage.dart';
 import 'HistoryPage.dart';
+import 'LoginPage.dart';
 import 'ProfilePage.dart';
 import 'SplashScreen.dart';
 
