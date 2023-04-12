@@ -69,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
       page = HistoryPage();
       break;
       case 2:
-      page = Placeholder();
+      page = ProfilePage();
       break;
       default: 
       throw UnimplementedError('no widget for $selectedIndex');
@@ -240,6 +240,111 @@ class BigCard extends StatelessWidget {
         child: Text(pair.asLowerCase,
         style: style,
         semanticsLabel: "${pair.first} ${pair.second}",
+        ),
+      ),
+    );
+  }
+}
+
+
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  String _selectedGender = 'Male';
+  double _age = 20.0;
+  double _weight = 70.0;
+  double _height = 170.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50.0,
+                backgroundImage: NetworkImage(
+                    'https://picsum.photos/250?image=9'), // Replace with your profile image
+              ),
+              SizedBox(height: 20.0),
+              Text(
+                'Age: ${_age.toInt()}',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              SizedBox(
+                width: 200,
+                child: Slider(
+                  value: _age,
+                  min: 16,
+                  max: 100.0,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _age = newValue;
+                    });
+                  },
+                ),
+              ),
+              Text(
+                'Weight: ${_weight.toInt()} kg',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              SizedBox(
+                width: 200,
+                child: Slider(
+                  value: _weight,
+                  min: 0,
+                  max: 150.0,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _weight = newValue;
+                    });
+                  },
+                ),
+              ),
+              Text(
+                'Height: ${_height.toInt()} cm',
+                style: TextStyle(fontSize: 18.0),
+              ),
+              SizedBox(
+                width: 200,
+                child: Slider(
+                  value: _height,
+                  min: 0.0,
+                  max: 250.0,
+                  onChanged: (newValue) {
+                    setState(() {
+                      _height = newValue;
+                    });
+                  },
+                ),
+              ),
+              SizedBox(height: 20.0),
+              DropdownButton<String>(
+                value: _selectedGender,
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedGender = newValue!;
+                  });
+                },
+                items: <String>['Male', 'Female']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
