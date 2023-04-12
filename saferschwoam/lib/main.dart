@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white10),
         ),
         home: MyHomePage(),
       ),
@@ -258,90 +258,147 @@ class _ProfilePageState extends State<ProfilePage> {
   double _weight = 70.0;
   double _height = 170.0;
 
+
   @override
   Widget build(BuildContext context) {
+       final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Center(
+       backgroundColor: Colors.white,
+     // appBar: AppBar(
+       // title: Text('Profile'),
+      //),
+      body: Center(
+        
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+           // mainAxisAlignment: MainAxisAlignment.center,
+           // crossAxisAlignment: CrossAxisAlignment.center,
+            children: [    
+              Card(
+                color: theme.colorScheme.primary,
+            margin: EdgeInsets.all(16.0),
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Current alcohol level 2.5',
+                style: TextStyle(color: theme.colorScheme.onPrimary,fontSize: 24.0),
+              ),
+            ),
+          ),           
+            SizedBox(height: 60.0),
               CircleAvatar(
                 radius: 50.0,
                 backgroundImage: NetworkImage(
                     'https://picsum.photos/250?image=9'), // Replace with your profile image
               ),
+              SizedBox(height: 30.0),
+              Row(
+                 mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Age: ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  Container(
+                    width: 200.0,
+                    child: Slider(
+                      value: _age,
+                      min: 0.0,
+                      max: 100.0,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _age = newValue;
+                        });
+                      },
+                    ),
+                  ),
+                  Text(
+                    '${_age.toInt()}',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ],
+              ),
+              Row(
+                 mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Weight: ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  Container(
+                    width: 200.0,
+                    child: Slider(
+                      value: _weight,
+                      min: 0.0,
+                      max: 150.0,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _weight = newValue;
+                        });
+                      },
+                    ),
+                  ),
+                  Text(
+                    '${_weight.toInt()} kg',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ],
+              ),
+              Row(
+                 mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Height: ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  Container(
+                    width: 200.0,
+                    child: Slider(
+                      value: _height,
+                      min: 0.0,
+                      max: 250.0,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _height = newValue;
+                        });
+                      },
+                    ),
+                  ),
+                  Text(
+                    '${_height.toInt()} cm',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ],
+              ),
               SizedBox(height: 20.0),
-              Text(
-                'Age: ${_age.toInt()}',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(
-                width: 200,
-                child: Slider(
-                  value: _age,
-                  min: 16,
-                  max: 100.0,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _age = newValue;
-                    });
-                  },
-                ),
-              ),
-              Text(
-                'Weight: ${_weight.toInt()} kg',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(
-                width: 200,
-                child: Slider(
-                  value: _weight,
-                  min: 0,
-                  max: 150.0,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _weight = newValue;
-                    });
-                  },
-                ),
-              ),
-              Text(
-                'Height: ${_height.toInt()} cm',
-                style: TextStyle(fontSize: 18.0),
-              ),
-              SizedBox(
-                width: 200,
-                child: Slider(
-                  value: _height,
-                  min: 0.0,
-                  max: 250.0,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _height = newValue;
-                    });
-                  },
-                ),
-              ),
-              SizedBox(height: 20.0),
-              DropdownButton<String>(
-                value: _selectedGender,
-                onChanged: (newValue) {
-                  setState(() {
-                    _selectedGender = newValue!;
-                  });
-                },
-                items: <String>['Male', 'Female']
-                    .map<DropdownMenuItem<String>>((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
+              Row(
+                 mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Gender: ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  SizedBox(width: 10.0),
+                  Container(
+                    decoration: BoxDecoration(color: Colors.white ),
+                    child: DropdownButton<String>(
+                      value: _selectedGender,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedGender = newValue!;
+                        });
+                      },
+                      items: <String>['Male', 'Female']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
