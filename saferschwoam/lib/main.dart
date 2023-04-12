@@ -361,6 +361,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ],
                 ),
+                Card(
+                  color: Color.fromARGB(255, 0, 0, 0),
+             // margin: EdgeInsets.all(8.0),
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Excessive use of alcohol is harmful to health.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Color.fromARGB(255, 255, 82, 82) ,fontSize: 24.0),
+                ),
+              ),
+            ),           
               ],
             ),
       ),
@@ -381,14 +393,13 @@ class AddDrinkPage extends StatefulWidget {
 class _AddDrinkPageState extends State<AddDrinkPage> {
   // Dummy data for the ListView
    List<Map<String, dynamic>> _listData = [
-    {'name': 'Bier', 'icon': Icons.local_drink, 'value': 500},
-    {'name': 'Cocktail', 'icon': Icons.local_drink, 'value': 125},
-    {'name': 'Wein', 'icon': Icons.local_drink, 'value': 125},
-    {'name': 'Wasser', 'icon': Icons.local_drink, 'value': 500},
-     {'name': 'Wein', 'icon': Icons.local_drink, 'value': 125},
-    {'name': 'Wasser', 'icon': Icons.local_drink, 'value': 500},
-     {'name': 'Wein', 'icon': Icons.local_drink, 'value': 125},
-    {'name': 'Wasser', 'icon': Icons.local_drink, 'value': 500},
+    {'name': 'Bier', 'icon': Icons.local_drink, 'value': 500, 'alcohol' : 5},
+    {'name': 'Rusty Nail', 'icon': Icons.local_drink, 'value': 125,'alcohol' : 20},
+    {'name': 'Wein', 'icon': Icons.local_drink, 'value': 125,'alcohol' : 10},
+    {'name': 'Wasser', 'icon': Icons.local_drink, 'value': 500,'alcohol' : 0},
+     {'name': 'Spritzer', 'icon': Icons.local_drink, 'value': 125, 'alcohol' : 7},
+    {'name': 'Mojito', 'icon': Icons.local_drink, 'value': 500, 'alcohol' : 14},
+
     
   ];
 
@@ -436,6 +447,7 @@ class _AddDrinkPageState extends State<AddDrinkPage> {
                           });
                         },
                       ),
+                      Text('alcohol content: ${_listData[index]['alcohol']} %'),
                     ],
                   ),
                   trailing: IconButton(
