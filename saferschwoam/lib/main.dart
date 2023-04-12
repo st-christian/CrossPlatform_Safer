@@ -253,7 +253,7 @@ class _ProfilePageState extends State<ProfilePage> {
               CircleAvatar(
                 radius: 50.0,
                 backgroundImage: NetworkImage(
-                    'https://picsum.photos/250?image=9'), // Replace with your profile image
+                    'https://picsum.photos/250?image=64'), // Replace with your profile image
               ),
               SizedBox(height: 30.0),
               Row(
