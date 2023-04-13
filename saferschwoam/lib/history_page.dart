@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'main.dart';
 
 
 class HistoryPage extends StatefulWidget {
@@ -39,7 +38,7 @@ class _HistoryPageState extends State<HistoryPage> {
               ),
             ),
           ),
-          Text("Date: 15/04/2023"),
+          Text("Session: 15/04/2023"),
           Expanded(
           child : ListView.builder(
             itemCount: _listData.length,
@@ -66,7 +65,7 @@ class _HistoryPageState extends State<HistoryPage> {
             },
           ),
           ),
-          Text("Date: 13/04/2023"),
+          Text("Session: 13/04/2023"),
           Expanded(
           child : ListView.builder(
             itemCount: _listDataTwo.length,
@@ -93,6 +92,7 @@ class _HistoryPageState extends State<HistoryPage> {
             },
           ),
           ),
+          
           SizedBox(
                   width: 120,
                   height: 50,

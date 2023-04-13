@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
+
+
+
+class ProfilePage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  String _selectedGender = 'Male';
+class _ProfilePageState extends State<ProfilePage> {
+  String _selectedGender = 'Female';
   double _age = 20.0;
   double _weight = 70.0;
   double _height = 170.0;
@@ -20,7 +23,18 @@ class _LoginPageState extends State<LoginPage> {
        
       body: Center(
         child: Column(
-          children: <Widget>[             
+          children: <Widget>[  
+                Card(
+                  color: theme.colorScheme.primary,
+             // margin: EdgeInsets.all(8.0),
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Current alcohol level 2.5',
+                  style: TextStyle(color: theme.colorScheme.onPrimary,fontSize: 24.0),
+                ),
+              ),
+            ),           
               SizedBox(height: 60.0),
                 CircleAvatar(
                   radius: 50.0,
@@ -35,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Age: ',
                       style: TextStyle(fontSize: 18.0),
                     ),
-                    Container(
+                    SizedBox(
                       width: 200.0,
                       child: Slider(
                         value: _age,
@@ -61,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Weight: ',
                       style: TextStyle(fontSize: 18.0),
                     ),
-                    Container(
+                    SizedBox(
                       width: 200.0,
                       child: Slider(
                         value: _weight,
@@ -87,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Height: ',
                       style: TextStyle(fontSize: 18.0),
                     ),
-                    Container(
+                    SizedBox(
                       width: 200.0,
                       child: Slider(
                         value: _height,
@@ -106,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Row(
                    mainAxisSize: MainAxisSize.min,
                   children: [
@@ -124,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                             _selectedGender = newValue!;
                           });
                         },
-                        items: <String>['Male', 'Female']
+                        items: <String>['Female','Male',]
                             .map<DropdownMenuItem<String>>((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
@@ -135,18 +149,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20.0),
-                SizedBox(
-                  width: 120,
-                  height: 50,
-                  child: ElevatedButton(
-                     style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(theme.colorScheme.primary)),
-                    child: Text('Start', style: TextStyle(fontSize: 24, color: theme.colorScheme.onPrimary),),
-                    onPressed: () {
-                      Navigator.of(context).pushReplacementNamed('/MainHomePage');
-                    },
-                        ),
+                Card(
+                  color: Color.fromARGB(255, 0, 0, 0),
+             // margin: EdgeInsets.all(8.0),
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Excessive use of alcohol is harmful to health.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Color.fromARGB(255, 255, 82, 82) ,fontSize: 24.0),
                 ),
+              ),
+            ),           
               ],
             ),
       ),
@@ -156,3 +170,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
+
+
+

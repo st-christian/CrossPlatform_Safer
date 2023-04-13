@@ -2,11 +2,11 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'AddDrinkPage.dart';
-import 'HistoryPage.dart';
-import 'LoginPage.dart';
-import 'ProfilePage.dart';
-import 'SplashScreen.dart';
+import 'add_drink_page.dart';
+import 'history_page.dart';
+import 'login_page.dart';
+import 'profile_page.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(MyApp());

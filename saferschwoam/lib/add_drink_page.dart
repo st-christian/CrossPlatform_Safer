@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class AddDrinkPage extends StatefulWidget {
   @override
-  _AddDrinkPageState createState() => _AddDrinkPageState();
+  State<AddDrinkPage> createState() => _AddDrinkPageState();
 }
 
 class _AddDrinkPageState extends State<AddDrinkPage> {
