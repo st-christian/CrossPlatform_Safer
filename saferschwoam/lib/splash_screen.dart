@@ -21,13 +21,25 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: theme.colorScheme.primary,
       body: Center(
-        child: Text(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
           'Safer Schwoam',
           style: TextStyle(
             fontSize: 48.0,
             color: theme.colorScheme.onPrimary,
           ),
         ),
+                  Text(
+          'The best tool for your liver',
+          style: TextStyle(
+            fontSize: 24.0,
+            color: theme.colorScheme.onPrimary,
+          ),
+        ),
+        ],
+      ),
       ),
     );
   }
