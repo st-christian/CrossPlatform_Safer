@@ -26,85 +26,87 @@ class _HistoryPageState extends State<HistoryPage> {
 
   final theme = Theme.of(context);
     return Scaffold(
-   body: Column(
-        children: <Widget>[
-
-          Card(
-            color: theme.colorScheme.primary,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text('Current alcohol level 2.5',
-                style: TextStyle(color: theme.colorScheme.onPrimary,fontSize: 24.0),
+   body: SafeArea(
+     child: Column(
+          children: <Widget>[
+   
+            Card(
+              color: theme.colorScheme.primary,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('Current alcohol level 2.5',
+                  style: TextStyle(color: theme.colorScheme.onPrimary,fontSize: 24.0),
+                ),
               ),
             ),
-          ),
-          Text("Session: 15/04/2023"),
-          Expanded(
-          child : ListView.builder(
-            itemCount: _listData.length,
-            itemBuilder: (context, index) {
-              return Card(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: ListTile(
-                leading: Icon(_listData[index]['icon']),
-                title: Text(_listData[index]['name']),
-                subtitle: Column(
-                    children: [                
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('alcohol content: ${_listData[index]['alcohol']} %'),
-                          Text('${_listData[index]['value']} ml'), // Placeholder for the slider value
-                        ],
-                      ),
-                      
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-          ),
-          Text("Session: 13/04/2023"),
-          Expanded(
-          child : ListView.builder(
-            itemCount: _listDataTwo.length,
-            itemBuilder: (context, index) {
-              return Card(
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: ListTile(
-                leading: Icon(_listDataTwo[index]['icon']),
-                title: Text(_listDataTwo[index]['name']),
-                subtitle: Column(
-                    children: [                
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('alcohol content: ${_listData[index]['alcohol']} %'),
-                          Text('${_listData[index]['value']} ml'), // Placeholder for the slider value
-                        ],
-                      ),
-                      
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-          ),
-          
-          SizedBox(
-                  width: 120,
-                  height: 50,
-                  child: ElevatedButton(
-                     style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(theme.colorScheme.primary)),
-                    child: Text('New Session', style: TextStyle(fontSize: 12, color: theme.colorScheme.onPrimary),),
-                    onPressed: () {                    
-                    },
+            Text("Session: 15/04/2023"),
+            Expanded(
+            child : ListView.builder(
+              itemCount: _listData.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  child: ListTile(
+                  leading: Icon(_listData[index]['icon']),
+                  title: Text(_listData[index]['name']),
+                  subtitle: Column(
+                      children: [                
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('alcohol content: ${_listData[index]['alcohol']} %'),
+                            Text('${_listData[index]['value']} ml'), // Placeholder for the slider value
+                          ],
                         ),
-                ),
-        ],
-      ),
+                        
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            ),
+            Text("Session: 13/04/2023"),
+            Expanded(
+            child : ListView.builder(
+              itemCount: _listDataTwo.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  child: ListTile(
+                  leading: Icon(_listDataTwo[index]['icon']),
+                  title: Text(_listDataTwo[index]['name']),
+                  subtitle: Column(
+                      children: [                
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('alcohol content: ${_listData[index]['alcohol']} %'),
+                            Text('${_listData[index]['value']} ml'), // Placeholder for the slider value
+                          ],
+                        ),
+                        
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+            ),
+            
+            SizedBox(
+                    width: 120,
+                    height: 50,
+                    child: ElevatedButton(
+                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(theme.colorScheme.primary)),
+                      child: Text('New Session', style: TextStyle(fontSize: 12, color: theme.colorScheme.onPrimary),),
+                      onPressed: () {                    
+                      },
+                          ),
+                  ),
+          ],
+        ),
+   ),
     );
   }
 }
