@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1008542086591",
+    "project_id": "saferschwoam",
+    "storage_bucket": "saferschwoam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008542086591:android:4f1ac2fc54d2aa3f7edd0a",
+        "android_client_info": {
+          "package_name": "com.example.saferschwoam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008542086591-7cikjuqmnc2eivp8rtuh0ah0mfvvsrlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwULrILuzY5ru7kEbyH4OHzxzjMjtQoEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1008542086591-7cikjuqmnc2eivp8rtuh0ah0mfvvsrlo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1008542086591-ja3qin0i1ull9ktjgo7oo6k6hb2eq9tk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.saferschwoam"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

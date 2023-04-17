@@ -1,6 +1,8 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'add_drink_page.dart';
 import 'history_page.dart';
@@ -8,7 +10,13 @@ import 'login_page.dart';
 import 'profile_page.dart';
 import 'splash_screen.dart';
 
-void main() {
+void main() async {
+  // Ensure that Firebase is initialized
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // Run the app
   runApp(MyApp());
 }
 
@@ -29,8 +37,7 @@ class MyApp extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           '/LoginPage': (BuildContext context) => LoginPage(),
           '/MainHomePage': (BuildContext context) => MyHomePage(),
-       
-      },
+        },
       ),
     );
   }
