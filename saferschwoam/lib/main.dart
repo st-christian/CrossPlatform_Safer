@@ -9,6 +9,7 @@ import 'history_page.dart';
 import 'login_page.dart';
 import 'profile_page.dart';
 import 'splash_screen.dart';
+import 'overview_chart_page.dart';
 
 void main() async {
   // Ensure that Firebase is initialized
@@ -22,7 +23,6 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -80,12 +80,15 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex){
       case 0:
-      page = AddDrinkPage();
+      page = LineChartSample2();
       break;
       case 1:
-      page = HistoryPage();
+      page = AddDrinkPage();
       break;
       case 2:
+      page = HistoryPage();
+      break;
+      case 3:
       page = ProfilePage();
       break;
       default: 
@@ -102,6 +105,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
         bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
+           BottomNavigationBarItem(
+            icon: Icon(Icons.show_chart_rounded),
+            label: 'Schwoam Charts',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_drink_rounded),
             label: 'Oans Schwoam',
@@ -116,6 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: selectedIndex,
+        unselectedItemColor: Color.fromARGB(255, 106, 205, 255),
         selectedItemColor: const Color.fromARGB(255, 0, 75, 112),
         onTap: (value) {
                 setState(() {
