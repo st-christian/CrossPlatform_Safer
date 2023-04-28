@@ -17,6 +17,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
   ];
 
   bool showAvg = false;
+     List<Map<String, dynamic>> _listData = [
+    {'name': 'Bier', 'icon': Icons.local_drink, 'size': 500, 'alcohol' : 5},
+   ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           child: Center(
             child: Column(
               children: <Widget>[    
+                SizedBox(height: 30,),
                 Text('Schwoamo Meter ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),          
                        SizedBox(
@@ -65,6 +69,36 @@ class _LineChartSample2State extends State<LineChartSample2> {
               ),
               
             ),
+               Divider(thickness: 3,),
+                Text('Last Drink ',
+                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
+              Card(
+                          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          child: ListTile(
+                            leading: Icon(Icons.local_drink),
+                            title: Text(_listData[0]["name"]),
+                            subtitle: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Menge:'),
+                                    Text('${_listData[0]["size"]} ml'),
+                                  ],
+                                ),
+                               
+                                Text('Alcohol content: ${_listData[0]["alcohol"]} %'),
+                              ],
+                            ),
+                            trailing: IconButton(
+                              icon: Icon(Icons.add_circle_rounded),
+                              color: theme.colorScheme.primary,
+                              onPressed: () {
+                                // Handle button press
+                              },
+                            ),
+                          ),
+                        ),
           ],
         ),
        
