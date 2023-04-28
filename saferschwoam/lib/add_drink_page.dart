@@ -17,16 +17,10 @@ class _AddDrinkPageState extends State<AddDrinkPage> {
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Card(
-              color: theme.colorScheme.primary,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  'Current alcohol level 2.5',
-                  style: TextStyle(color: theme.colorScheme.onPrimary, fontSize: 24.0),
-                ),
-              ),
-            ),
+            SizedBox(height: 30,),
+                Text('Oans Schwoam',
+                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
+                           Divider(thickness: 3,),
             Expanded(
               child: StreamBuilder(
                 stream: DrinkService().getDrinks(),

@@ -30,15 +30,10 @@ class _HistoryPageState extends State<HistoryPage> {
      child: Column(
           children: <Widget>[
    
-            Card(
-              color: theme.colorScheme.primary,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text('Current alcohol level 2.5',
-                  style: TextStyle(color: theme.colorScheme.onPrimary,fontSize: 24.0),
-                ),
-              ),
-            ),
+           SizedBox(height: 30,),
+                Text('Schwoamo History ',
+                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
+                           Divider(thickness: 3,),
             Text("Session: 15/04/2023"),
             Expanded(
             child : ListView.builder(

@@ -32,7 +32,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
               children: <Widget>[    
                 SizedBox(height: 30,),
                 Text('Schwoamo Meter ',
-                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),          
+                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),  
+                           Divider(thickness: 3,),        
                        SizedBox(
                         height: 280,
                          child: SfRadialGauge(
