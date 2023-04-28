@@ -66,6 +66,7 @@ class _HistoryPageState extends State<HistoryPage> {
               },
             ),
             ),
+            Divider(thickness: 3,),
             Text("Session: 13/04/2023"),
             Expanded(
             child : ListView.builder(
