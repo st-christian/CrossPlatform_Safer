@@ -30,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     SizedBox(height: 30,),
                 Text('Schwoam Profil',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
-                           Divider(thickness: 3,),
+                           Divider(thickness: 1,),
                   SizedBox(height: 20.0),
                     CircleAvatar(
                       radius: 50.0,
@@ -134,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 _selectedGender = newValue!;
                               });
                             },
-                            items: <String>['Female','Male',]
+                            items: <String>['Female','Male', 'Diverse']
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
@@ -145,6 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 30.0),
                     SizedBox(
                       height: 85,
                       child: Card(

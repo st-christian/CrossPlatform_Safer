@@ -1,6 +1,7 @@
 //import 'package:fl_chart_app/presentation/resources/app_resources.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/widgets/add_drink_card.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class LineChartSample2 extends StatefulWidget {
@@ -21,6 +22,8 @@ class _LineChartSample2State extends State<LineChartSample2> {
     {'name': 'Bier', 'icon': Icons.local_drink, 'size': 500, 'alcohol' : 5},
    ];
 
+  List<bool> isSelected = [true, false, false];
+
   @override
   Widget build(BuildContext context) {
       final theme = Theme.of(context);
@@ -33,9 +36,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 SizedBox(height: 30,),
                 Text('Schwoamo Meter ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),  
-                           Divider(thickness: 3,),        
+                           Divider(thickness: 1,),
                        SizedBox(
-                        height: 280,
+                        height: 230,
                          child: SfRadialGauge(
                          axes: <RadialAxis>[
                                RadialAxis(minimum: 0,maximum: 3.01,
@@ -51,7 +54,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                                   )]
                                        ),
                        ),
-                       Divider(thickness: 3,),
+                       Divider(thickness: 1,),
                   Text('Schwoam Charts ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),  
             AspectRatio(
@@ -70,36 +73,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
               ),
               
             ),
-               Divider(thickness: 3,),
+               Divider(thickness: 1,),
                 Text('Last Drink ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
-              Card(
-                          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                          child: ListTile(
-                            leading: Icon(Icons.local_drink),
-                            title: Text(_listData[0]["name"]),
-                            subtitle: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Menge:'),
-                                    Text('${_listData[0]["size"]} ml'),
-                                  ],
-                                ),
-                               
-                                Text('Alcohol content: ${_listData[0]["alcohol"]} %'),
-                              ],
-                            ),
-                            trailing: IconButton(
-                              icon: Icon(Icons.add_circle_rounded),
-                              color: theme.colorScheme.primary,
-                              onPressed: () {
-                                // Handle button press
-                              },
-                            ),
-                          ),
-                        ),
+             AddDrinkCard(drinkName: _listData[0]["name"], alcoholContent: _listData[0]["alcohol"], size: _listData[0]["size"])
           ],
         ),
        
