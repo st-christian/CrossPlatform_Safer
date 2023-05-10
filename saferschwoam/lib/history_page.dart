@@ -31,9 +31,9 @@ class _HistoryPageState extends State<HistoryPage> {
           children: <Widget>[
    
            SizedBox(height: 30,),
-                Text('Schwoamo History ',
+                Text('Schwoab History ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
-                           Divider(thickness: 3,),
+                           Divider(thickness: 1,),
             Text("Session: 15/04/2023"),
             Expanded(
             child : ListView.builder(
@@ -49,7 +49,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('alcohol content: ${_listData[index]['alcohol']} %'),
+                            Text('Alcohol content: ${_listData[index]['alcohol']} ‰'),
                             Text('${_listData[index]['value']} ml'), // Placeholder for the slider value
                           ],
                         ),
@@ -61,7 +61,7 @@ class _HistoryPageState extends State<HistoryPage> {
               },
             ),
             ),
-            Divider(thickness: 3,),
+            Divider(thickness: 1,),
             Text("Session: 13/04/2023"),
             Expanded(
             child : ListView.builder(
@@ -77,7 +77,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('alcohol content: ${_listData[index]['alcohol']} %'),
+                            Text('alcohol content: ${_listData[index]['alcohol']} ‰'),
                             Text('${_listData[index]['value']} ml'), // Placeholder for the slider value
                           ],
                         ),

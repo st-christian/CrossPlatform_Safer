@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.article_rounded),
-            label: 'Schwoblisten',
+            label: 'Schwoablisten',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
