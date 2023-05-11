@@ -73,10 +73,10 @@ class _LineChartSample2State extends State<LineChartSample2> {
               ),
               
             ),
-               Divider(thickness: 1,),
-                Text('Last Drink ',
-                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
-             AddDrinkCard(drinkName: _listData[0]["name"], alcoholContent: _listData[0]["alcohol"], size: _listData[0]["size"])
+            //    Divider(thickness: 1,),
+            //     Text('Last Drink ',
+            //               style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
+            //  AddDrinkCard(drinkName: _listData[0]["name"], alcoholContent: _listData[0]["alcohol"], size: _listData[0]["size"])
           ],
         ),
        

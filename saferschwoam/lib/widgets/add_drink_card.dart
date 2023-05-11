@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../models/drink.dart';
+import '../services/history_service.dart';
+
 class AddDrinkCard extends StatefulWidget {
-  final String drinkName;
-  final int alcoholContent;
-  final int size;
+  final Drink drink;
 
   AddDrinkCard({
     Key? key,
-    required this.drinkName,
-    required this.alcoholContent,
-    required this.size,
+    required this.drink,
   }) : super(key: key);
 
   @override
@@ -22,12 +21,13 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final HistoryService historyService = HistoryService();
 
     return Card(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       child: ListTile(
         leading: Icon(Icons.wine_bar_rounded),
-        title: Text(widget.drinkName,
+        title: Text(widget.drink.name,
           style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.bold,
@@ -39,7 +39,7 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Alcohol content:'),
-                Text('${widget.alcoholContent} ‰'),
+                Text('${widget.drink.alcohol} ‰'),
               ],
             ),
             SizedBox(height: 10,),
@@ -82,16 +82,26 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
           icon: Icon(Icons.add_circle_rounded),
           iconSize: 38.0,
           color: theme.colorScheme.primary,
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
+          // Handle button press
+          onPressed: () async {
+          final scaffoldMessenger = ScaffoldMessenger.of(context);
+          try {
+            await historyService.addDrinkToHistory(widget.drink);
+            scaffoldMessenger.showSnackBar(
               SnackBar(
-                content: Text(
-                    'Added ${widget.drinkName} to your drink list.'),
+                content: Text('Added ${widget.drink.name} to your drink list.'),
                 duration: Duration(seconds: 3),
               ),
             );
-            // Handle button press
-          },
+          } catch (e) {
+            scaffoldMessenger.showSnackBar(
+              SnackBar(
+                content: Text('Failed to add ${widget.drink.name} to your drink list.'),
+                duration: Duration(seconds: 3),
+              ),
+            );
+          }
+        },
         ),
       ),
     );
