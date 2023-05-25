@@ -21,9 +21,19 @@ dependencies:
   fl_chart: ^0.62.0
   syncfusion_flutter_gauges: ^21.1.38
 
-dev_dependencies:
+
+dev_dependencies: 
   flutter_test:
     sdk: flutter
+
+  flutter_launcher_icons: "^0.9.0"
+
+flutter_icons:
+  image_path:  "assets/icon.png" 
+  android: true
+  ios: true
+  min_sdk_android: 21
+
 
   flutter_lints: ^2.0.0
 

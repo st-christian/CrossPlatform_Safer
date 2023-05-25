@@ -63,16 +63,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
         child: CircularProgressIndicator(),
       );
     } else {
-       bac = calculationService.calculateBAC(
-        80,
-        180,
-        "male",
-        calculationService.totalAlcGramDrink(snapshot.data!),
-        0,
-      );
-       //bacRound = double.parse(bac.toStringAsFixed(2));
-      // globals.bacRound =double.parse(bac.toStringAsFixed(2));
-      print("BAC: $bac");
+      if(snapshot.data != null){
+       bac = calculationService.calculateBAC(80,180,"male",calculationService.totalAlcGramDrink(snapshot.data!), 0,);
+      }
       return Column(
         children: [
          SizedBox(
@@ -149,7 +142,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         break;
       case 6:
       if((globals.startTimeHour+6) > 24){
-       double tim=  (globals.startTimeHour+6) - 24;
+       int tim=  (globals.startTimeHour+6) - 24;
        String time = tim.toString();
        time = time + ':00';
         text =  Text(time, style: style);

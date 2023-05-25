@@ -38,13 +38,20 @@ class CalculationService {
   
 
    double totalAlcGramDrink(List<ConsumedDrink> drinks) {
+          double totalAlcGram =0;
+    if(drinks.isNotEmpty){
     globals.startTimeHour = drinks.last.consumed.hour;
        globals.sessionDate = drinks.first.consumed.day.toString() + '/' + drinks.first.consumed.month.toString() + '/' + drinks.first.consumed.year.toString() ;
       double totalAlcGram =0;
       for(ConsumedDrink drink in drinks){
         totalAlcGram += calculateAlcGramDrink(drink.size, drink.alcohol);
       } 
-      getPlotList( drinks);
+      getPlotList(drinks);
+       
+      }else{
+
+      }
+
     return totalAlcGram;
   }
 

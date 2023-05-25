@@ -92,6 +92,20 @@ class _HistoryPageState extends State<HistoryPage> {
               ),
               
             ),
+             ElevatedButton(
+          child: const Text('Clear History'),
+          onPressed: () {
+            final scaffoldMessenger = ScaffoldMessenger.of(context);
+             scaffoldMessenger.showSnackBar(
+            SnackBar(
+                content: Text('History Cleared.'),
+                duration: Duration(seconds: 3),
+              )
+             );
+            historyService.clearHistory();
+          globals.bacRound = 0;
+          globals.flList.clear();},
+        ),
 
           ],
         ),
