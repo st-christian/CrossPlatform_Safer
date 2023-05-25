@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
+import 'my-globals.dart' as globals;
 
 
 class ProfilePage extends StatefulWidget {
@@ -9,11 +10,46 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  String _selectedGender = 'Female';
-  double _age = 20.0;
-  double _weight = 70.0;
-  double _height = 170.0;
+  String _selectedGender = globals.gender;
+  double _age = globals.age;
+  double _weight = globals.weight;
+  double _height = globals.height;
 
+ @override
+  void initState() {
+    super.initState();
+    _getSharedPrefAge();
+    _getSharedPrefWeight();
+    _getSharedPrefHeight();
+  }
+
+Future<void> _setSharedPref(String  sharePref, double value) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setDouble(sharePref, value);
+    });
+  }
+
+  Future<void> _getSharedPrefAge() async {
+    final prefs = await SharedPreferences.getInstance(); 
+     setState(() {
+      _age = (prefs.getDouble('age') ?? 25);
+    });
+  }
+
+      Future<void> _getSharedPrefWeight() async {
+    final prefs = await SharedPreferences.getInstance(); 
+     setState(() {
+      _weight = (prefs.getDouble('weight') ?? 80);
+    });
+      }
+
+      Future<void> _getSharedPrefHeight() async {
+    final prefs = await SharedPreferences.getInstance(); 
+     setState(() {
+      _height = (prefs.getDouble('height') ?? 170);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +89,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             max: 100.0,
                             onChanged: (newValue) {
                               setState(() {
+                                _setSharedPref('age', newValue);
+                                globals.age = newValue;
                                 _age = newValue;
                               });
                             },
@@ -79,6 +117,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             max: 150.0,
                             onChanged: (newValue) {
                               setState(() {
+                                 globals.weight = newValue;
+                                  _setSharedPref('weight', newValue);
                                 _weight = newValue;
                               });
                             },
@@ -105,6 +145,8 @@ class _ProfilePageState extends State<ProfilePage> {
                             max: 250.0,
                             onChanged: (newValue) {
                               setState(() {
+                                  _setSharedPref('height', newValue);
+                                 globals.height = newValue;
                                 _height = newValue;
                               });
                             },
@@ -131,6 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             value: _selectedGender,
                             onChanged: (newValue) {
                               setState(() {
+                                 globals.gender = newValue!;
                                 _selectedGender = newValue!;
                               });
                             },

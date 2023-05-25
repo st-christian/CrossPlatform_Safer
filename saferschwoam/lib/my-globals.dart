@@ -9,5 +9,5 @@ double weight = 80;
 double height = 180;
 int startTimeHour = 0;
 String sessionDate = '26/05/2023';
-String gender = "male";
+String gender = "Male";
 List<FlSpot> flList =[];
