@@ -99,8 +99,12 @@ class _LineChartSample2State extends State<LineChartSample2> {
   },
 ),
                        Divider(thickness: 1,),
+                     
                   Text('Schwoam Charts ',
-                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),  
+                          style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
+                            Text('Date: ' + globals.sessionDate.toString(),
+                          style: TextStyle(fontSize: 12,fontWeight:FontWeight.bold,  color: theme.primaryColor),), 
+                           
             AspectRatio(
               aspectRatio: 1.70,
               child: Padding(
@@ -138,19 +142,61 @@ class _LineChartSample2State extends State<LineChartSample2> {
     Widget text;
     switch (value.toInt()) {
        case 0:
-        text = const Text('0:00', style: style);
+       String time = globals.startTimeHour.toString();
+       time = time + ':00';
+        text =  Text(time, style: style);
         break;
       case 6:
-        text = const Text('6:00', style: style);
+      if((globals.startTimeHour+6) > 24){
+       double tim=  (globals.startTimeHour+6) - 24;
+       String time = tim.toString();
+       time = time + ':00';
+        text =  Text(time, style: style);
+      }else{
+ String time = (globals.startTimeHour+6).toString();
+        time = time + ':00';
+        text =  Text(time, style: style);
+      }
+      
         break;
       case 12:
-        text = const Text('12:00', style: style);
+      if((globals.startTimeHour+12) > 24){
+       int tim=  (globals.startTimeHour+12) - 24;
+       String time = tim.toString();
+       time = time + ':00';
+        text =  Text(time, style: style);
+      }else{
+String time = (globals.startTimeHour+12).toString();
+ time = time + ':00';
+        text =  Text(time, style: style);
+      }
+       
         break;
       case 18:
-        text = const Text('18:00', style: style);
+      if((globals.startTimeHour+18) > 24){
+       int tim=  (globals.startTimeHour+18) - 24;
+       String time = tim.toString();
+       time = time + ':00';
+         text =  Text(time, style: style);
+      }else{
+ String time = (globals.startTimeHour+18).toString();
+  time = time + ':00';
+        text =  Text(time, style: style);
+      }
+      
         break;
         case 23:
-        text = const Text('24:00', style: style);
+        if((globals.startTimeHour+23) > 24){
+       int tim=  (globals.startTimeHour+23) - 24;
+       String time = tim.toString();
+       time = time + ':00';
+        text =  Text(time, style: style);
+      }else{
+         String time = (globals.startTimeHour+23).toString();
+          time = time + ':00';
+          text =  Text(time, style: style);
+      }
+       
         break;
       default:
         text = const Text('', style: style);
@@ -243,17 +289,18 @@ class _LineChartSample2State extends State<LineChartSample2> {
       minY: 0,
       maxY: 3,
       lineBarsData: [
-        LineChartBarData(
-          spots: const [
+        LineChartBarData(spots: calculationService.getPlotList()
+        /*  spots: const [
             FlSpot(0, 0),
             FlSpot(2, 0.5),
+            FlSpot(5, 0),
             FlSpot(6, 1.5),
             FlSpot(10, 1.2),
             FlSpot(12, 2),
             FlSpot(14, 2.5),
             FlSpot(23, 0),
-          ],
-          isCurved: true,
+          ]*/,
+          isCurved: false,
           gradient: LinearGradient(
             colors: gradientColors,
           ),

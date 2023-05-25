@@ -3,6 +3,7 @@ import 'package:namer_app/services/calculationservice.dart';
 import 'package:namer_app/services/history_service.dart';
 
 import 'models/consumeddrink.dart';
+import '../my-globals.dart' as globals;
 
 class HistoryPage extends StatefulWidget {
   @override
@@ -36,7 +37,8 @@ class _HistoryPageState extends State<HistoryPage> {
             Divider(
               thickness: 1,
             ),
-            Text("Session: 15/04/2023"),
+            Text('Date: ' + globals.sessionDate.toString(),
+                          style: TextStyle(fontSize: 12,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
             Expanded(
               child: StreamBuilder<List<ConsumedDrink>>(
                 stream: historyService.getHistory(),

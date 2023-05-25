@@ -2,7 +2,10 @@
 //https://www.smart-rechner.de/promille/rechner.php
 
 
+import 'package:fl_chart/fl_chart.dart';
+
 import '../models/consumeddrink.dart';
+import '../my-globals.dart' as globals;
 
 class CalculationService {
   double calculateBAC(double weight, double height, String gender, double alcGrams, int timePassed) {
@@ -29,10 +32,56 @@ class CalculationService {
   }
 
    double totalAlcGramDrink(List<ConsumedDrink> drinks) {
+    globals.startTimeHour = drinks.first.consumed.hour;
+       globals.sessionDate = drinks.first.consumed.day.toString() + '/' + drinks.first.consumed.month.toString() + '/' + drinks.first.consumed.year.toString() ;
       double totalAlcGram =0;
       for(ConsumedDrink drink in drinks){
         totalAlcGram += calculateAlcGramDrink(drink.size, drink.alcohol);
       } 
     return totalAlcGram;
+  }
+
+  List<FlSpot> getPlotList() {
+   //   int startTime = drinks.first.consumed.hour;
+      List<FlSpot> flListPlot =[];
+     /* for(ConsumedDrink drink in drinks){
+       
+      } */
+      double tempValue = 0;
+      double value =0;
+      double offset = 0;
+      bool isDrinking = false;
+      for(int i = 0; i< 24; i++ ){
+
+        if(i%3 == 0){    
+         value = calculateBAC(globals.weight,globals.height, globals.gender, 45, 0);
+          offset = 0.1;
+          isDrinking = true;
+         value += tempValue;
+         } else{
+          value = tempValue;
+          offset = 0;
+          isDrinking = false;
+         }
+        FlSpot spot;
+      /*  if((tempValue+value) <= 0){
+           spot = FlSpot(i.toDouble(), 0);
+        }else{*/
+          if(isDrinking){
+          spot = FlSpot(i.toDouble(), (tempValue));
+          flListPlot.add(spot);
+          spot = FlSpot((i.toDouble()+offset), (value));
+          flListPlot.add(spot);
+          }else{
+            spot = FlSpot(i.toDouble(), (value));
+            flListPlot.add(spot);
+          }
+      //  }
+
+        tempValue = value - 0.15;
+       // flListPlot.add(spot);
+      }
+     globals.flList = flListPlot;
+     return flListPlot;
   }
 }
