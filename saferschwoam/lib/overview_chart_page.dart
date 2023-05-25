@@ -71,7 +71,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
         0,
       );
        //bacRound = double.parse(bac.toStringAsFixed(2));
-       globals.bacRound =double.parse(bac.toStringAsFixed(2));
+      // globals.bacRound =double.parse(bac.toStringAsFixed(2));
       print("BAC: $bac");
       return Column(
         children: [
@@ -92,13 +92,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                                   )]
                                        ),
                        ),
-          // Render the drink cards or other components here
-        ],
-      );
-    }
-  },
-),
-                       Divider(thickness: 1,),
+                          Divider(thickness: 1,),
                      
                   Text('Schwoam Charts ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
@@ -121,6 +115,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
               ),
               
             ),
+          // Render the drink cards or other components here
+        ],
+      );
+    }
+  },
+),
+                    
             //    Divider(thickness: 1,),
             //     Text('Last Drink ',
             //               style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),
@@ -289,7 +290,7 @@ String time = (globals.startTimeHour+12).toString();
       minY: 0,
       maxY: 3,
       lineBarsData: [
-        LineChartBarData(spots: calculationService.getPlotList()
+        LineChartBarData(spots: globals.flList
         /*  spots: const [
             FlSpot(0, 0),
             FlSpot(2, 0.5),

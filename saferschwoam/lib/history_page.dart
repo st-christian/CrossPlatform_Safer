@@ -56,9 +56,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     );
                   }
                   else{
-                         bac = calculationService.calculateBAC(80, 180, "male", calculationService.totalAlcGramDrink(snapshot.data!), 0);
-                         double bacRound = double.parse(bac.toStringAsFixed(2)); 
-                         print("BAC: $bac"); 
+                        
                     return ListView.builder(
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
@@ -76,7 +74,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                        'Alcohol content: ${drink.alcohol} ‰   $bacRound'),
+                                        'Alcohol content: ${drink.alcohol} ‰'),
                                     Text('${drink.size} ml'),
                                     
                                   ],
