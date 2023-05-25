@@ -17,6 +17,7 @@ class AddDrinkCard extends StatefulWidget {
 
 class _AddDrinkCardState extends State<AddDrinkCard> {
   List<bool> isSelected = [true, false, false];
+  int size =0;
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +50,12 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
                 borderRadius: BorderRadius.circular(10),
                 onPressed: (int newIndex) {
                   setState(() {
+                    size = newIndex;
                     for (int index = 0; index < isSelected.length; index++) {
                       if (index == newIndex) {
                         // one button is always set to true
                         isSelected[index] = true;
+                        
                       } else {
                         // other two will be set to false and not selected
                         isSelected[index] = false;
@@ -61,18 +64,18 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
                   });
                 },
                 children:
-                const [
+                 [
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Text('300 ml'),
+                    child: Text('${widget.drink.size}ml'),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Text('500 ml'),
+                    child: Text('${widget.drink.size_m}ml'),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8),
-                    child: Text('1000 ml'),
+                    child: Text('${widget.drink.size_l}ml'),
                   ),
                 ]
             ),
@@ -86,7 +89,7 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
           onPressed: () async {
           final scaffoldMessenger = ScaffoldMessenger.of(context);
           try {
-            await historyService.addDrinkToHistory(widget.drink);
+            await historyService.addDrinkToHistory(widget.drink, size);
             scaffoldMessenger.showSnackBar(
               SnackBar(
                 content: Text('Added ${widget.drink.name} to your drink list.'),

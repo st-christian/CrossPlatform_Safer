@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import '../models/consumeddrink.dart';
 import '../models/drink.dart';
@@ -18,10 +19,20 @@ class HistoryService {
             .toList());
   }
 
-  Future<void> addDrinkToHistory(Drink drink) async {
+  Future<void> addDrinkToHistory(Drink drink, int size) async {
+    num sizeMl = drink.size;
+    if(size ==0){
+sizeMl = drink.size;
+    }
+    if(size ==1){
+sizeMl = drink.size_m;
+    }
+    if(size ==2){
+sizeMl = drink.size_l;
+    }
     await collection.add({
       'name': drink.name,
-      'size': drink.size,
+      'size': sizeMl,
       'alcohol': drink.alcohol,
       'consumed': DateTime.now(),
       'user': FirebaseAuth.instance.currentUser?.uid,

@@ -7,6 +7,7 @@ class DrinkService {
 
   Stream<List<Drink>> getDrinks() {
     return collection
+        .orderBy('id', descending: false)
         .snapshots()
         .map((snapshot) => snapshot.docs
             .map((doc) => Drink.fromFirestore(doc.data() as Map<String, dynamic>))

@@ -21,12 +21,20 @@ class _ProfilePageState extends State<ProfilePage> {
     _getSharedPrefAge();
     _getSharedPrefWeight();
     _getSharedPrefHeight();
+    _getSharedPrefGender();
   }
 
 Future<void> _setSharedPref(String  sharePref, double value) async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setDouble(sharePref, value);
+    });
+  }
+
+  Future<void> _setSharedPrefGender(String value) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setString('gender', value);
     });
   }
 
@@ -48,6 +56,13 @@ Future<void> _setSharedPref(String  sharePref, double value) async {
     final prefs = await SharedPreferences.getInstance(); 
      setState(() {
       _height = (prefs.getDouble('height') ?? 170);
+    });
+  }
+
+   Future<void> _getSharedPrefGender() async {
+    final prefs = await SharedPreferences.getInstance(); 
+     setState(() {
+      _selectedGender = (prefs.getString('gender') ?? 'Male');
     });
   }
 
@@ -173,6 +188,7 @@ Future<void> _setSharedPref(String  sharePref, double value) async {
                             value: _selectedGender,
                             onChanged: (newValue) {
                               setState(() {
+                                 _setSharedPrefGender(newValue!);
                                  globals.gender = newValue!;
                                 _selectedGender = newValue!;
                               });
