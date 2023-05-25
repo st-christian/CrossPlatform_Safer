@@ -17,6 +17,7 @@ class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+   // historyService.clearHistory();
 
      double bac;
      //   print("BAC: $bac"); // print the BAC to the console

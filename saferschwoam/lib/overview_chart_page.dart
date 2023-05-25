@@ -1,8 +1,13 @@
 //import 'package:fl_chart_app/presentation/resources/app_resources.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:namer_app/services/calculationservice.dart';
+import 'package:namer_app/services/history_service.dart';
 import 'package:namer_app/widgets/add_drink_card.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'my-globals.dart' as globals;
+
+import 'models/consumeddrink.dart';
 
 class LineChartSample2 extends StatefulWidget {
   const LineChartSample2({super.key});
@@ -12,6 +17,10 @@ class LineChartSample2 extends StatefulWidget {
 }
 
 class _LineChartSample2State extends State<LineChartSample2> {
+    final HistoryService historyService = HistoryService();
+    final CalculationService calculationService = CalculationService();
+           double bac = 0;  
+       double bacRound = 0;
   List<Color> gradientColors = [
     const Color.fromARGB(255, 0, 75, 112),
      Color.fromARGB(255, 0, 255, 213),
@@ -27,7 +36,9 @@ class _LineChartSample2State extends State<LineChartSample2> {
   @override
   Widget build(BuildContext context) {
       final theme = Theme.of(context);
-    return Scaffold(
+
+      
+    return Scaffold( 
        body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -37,7 +48,34 @@ class _LineChartSample2State extends State<LineChartSample2> {
                 Text('Schwoamo Meter ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),  
                            Divider(thickness: 1,),
-                       SizedBox(
+                           StreamBuilder<List<ConsumedDrink>>(
+  stream: historyService.getHistory(),
+  builder: (context, snapshot) {
+    if (snapshot.hasError) {
+      print(snapshot.error);
+      return Center(
+        child: Text('Error fetching data'),
+      );
+    }
+
+    if (!snapshot.hasData) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+       bac = calculationService.calculateBAC(
+        80,
+        180,
+        "male",
+        calculationService.totalAlcGramDrink(snapshot.data!),
+        0,
+      );
+       //bacRound = double.parse(bac.toStringAsFixed(2));
+       globals.bacRound =double.parse(bac.toStringAsFixed(2));
+      print("BAC: $bac");
+      return Column(
+        children: [
+         SizedBox(
                         height: 230,
                          child: SfRadialGauge(
                          axes: <RadialAxis>[
@@ -46,14 +84,20 @@ class _LineChartSample2State extends State<LineChartSample2> {
                                            GaugeRange(startValue: 0,endValue: 0.5,color: theme.primaryColorLight,startWidth: 10,endWidth:10),
                                            GaugeRange(startValue: 0.5,endValue: 2,color: theme.primaryColorDark,startWidth: 10,endWidth: 10),
                                            GaugeRange(startValue: 2,endValue: 4,color: theme.primaryColor, startWidth: 10,endWidth: 10)],
-                                           pointers: <GaugePointer>[NeedlePointer(value:1.2)],
+                                           pointers: <GaugePointer>[NeedlePointer(value:globals.bacRound)],
                                       annotations: <GaugeAnnotation>[
                                           GaugeAnnotation(widget: Container(child:
-                                          Text('1.2 ‰ ',style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold))),
+                                          Text(globals.bacRound.toString() +' ‰ ',style: TextStyle(fontSize: 22,fontWeight:FontWeight.bold))),
                                           angle: 90,positionFactor: 0.5)]
                                   )]
                                        ),
                        ),
+          // Render the drink cards or other components here
+        ],
+      );
+    }
+  },
+),
                        Divider(thickness: 1,),
                   Text('Schwoam Charts ',
                           style: TextStyle(fontSize: 28,fontWeight:FontWeight.bold,  color: theme.primaryColor),),  

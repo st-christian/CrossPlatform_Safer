@@ -27,4 +27,14 @@ class HistoryService {
       'user': FirebaseAuth.instance.currentUser?.uid,
     });
   }
+  
+  Future<void> clearHistory() async {
+   var collection = FirebaseFirestore.instance.collection('History')
+   .where('user', isEqualTo: FirebaseAuth.instance.currentUser?.uid);
+    var snapshots = await collection.get();
+for (var doc in snapshots.docs) {
+  await doc.reference.delete();
+}
+  }
+
 }
