@@ -47,7 +47,7 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
             ToggleButtons(isSelected: isSelected,
                 renderBorder: true,
                 borderWidth: 1.5,
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(8),
                 onPressed: (int newIndex) {
                   setState(() {
                     size = newIndex;
@@ -66,15 +66,16 @@ class _AddDrinkCardState extends State<AddDrinkCard> {
                 children:
                  [
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    
+                    padding: EdgeInsets.symmetric(horizontal: 2),
                     child: Text('${widget.drink.size}ml'),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 2),
                     child: Text('${widget.drink.size_m}ml'),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                    padding: EdgeInsets.symmetric(horizontal: 2),
                     child: Text('${widget.drink.size_l}ml'),
                   ),
                 ]
