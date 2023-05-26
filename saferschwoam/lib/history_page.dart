@@ -51,12 +51,13 @@ class _HistoryPageState extends State<HistoryPage> {
                   }
 
                   if (!snapshot.hasData) {
+                 
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   }
                   else{
-                        
+                           
                     return ListView.builder(
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {

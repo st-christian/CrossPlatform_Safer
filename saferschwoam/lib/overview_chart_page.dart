@@ -238,7 +238,7 @@ String time = (globals.startTimeHour+12).toString();
               color: Colors.white,
               fontWeight: FontWeight.bold,
             );
-            return LineTooltipItem(touchedSpot.x.toInt().toString()+ ':00 - ' + touchedSpot.y.toString()+ '‰', textStyle);
+            return LineTooltipItem((touchedSpot.x.toInt() +globals.startTimeHour).toString()+ ':00 - ' + touchedSpot.y.toString()+ '‰', textStyle);
           }).toList();
         },
       )),
