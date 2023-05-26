@@ -61,6 +61,16 @@ class _HistoryPageState extends State<HistoryPage> {
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
                         final drink = snapshot.data![index];
+                        String hour = '0';
+                        String min = '0';
+                        if(drink.consumed.hour < 10){
+                          hour += drink.consumed.hour.toString();
+                        }else{ hour = drink.consumed.hour.toString();}
+
+                          if(drink.consumed.minute < 10){
+                          min += drink.consumed.minute.toString();
+                        }else{ min = drink.consumed.minute.toString();}
+                        String consumedDate = drink.consumed.day.toString() + '.' + drink.consumed.month.toString() + '.' + drink.consumed.year.toString() + ' -- ' + hour+ ':' + min;
                         return Card(
                           margin:
                               EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -79,7 +89,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                     
                                   ],
                                 ),
-                                Text('Consumed on: ${drink.consumed}'),
+                                Text('Consumed: ' + consumedDate),
                               ],
                             ),
                           ),
