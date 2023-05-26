@@ -230,7 +230,18 @@ String time = (globals.startTimeHour+12).toString();
   }
 
   LineChartData mainData() {
-    return LineChartData(
+    return LineChartData(      lineTouchData: LineTouchData(
+          touchTooltipData: LineTouchTooltipData(
+        getTooltipItems: (touchedSpots) {
+          return touchedSpots.map((LineBarSpot touchedSpot) {
+            final textStyle = TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            );
+            return LineTooltipItem(touchedSpot.x.toInt().toString()+ ':00 - ' + touchedSpot.y.toString()+ '‰', textStyle);
+          }).toList();
+        },
+      )),
       gridData: FlGridData(
         show: true,
         drawVerticalLine: true,
@@ -276,7 +287,7 @@ String time = (globals.startTimeHour+12).toString();
       ),
       borderData: FlBorderData(
         show: true,
-        border: Border.all(color: const Color(0xff37434d)),
+        border: Border.all(color: Color.fromARGB(255, 0, 0, 0)),
       ),
       minX: 0,
       maxX: 23,
@@ -307,7 +318,7 @@ String time = (globals.startTimeHour+12).toString();
             show: true,
             gradient: LinearGradient(
               colors: gradientColors
-                  .map((color) => color.withOpacity(0.3))
+                  .map((color) => color.withOpacity(0.4))
                   .toList(),
             ),
           ),

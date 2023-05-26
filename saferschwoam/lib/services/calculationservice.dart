@@ -98,16 +98,27 @@ class CalculationService {
            spot = FlSpot(i.toDouble(), 0);
         }else{*/
           if(isDrinking){
-          spot = FlSpot(i.toDouble(), (tempValue));
+              if(tempValue>3){
+                  spot = FlSpot(i.toDouble(), 3);}else{
+          spot = FlSpot(i.toDouble(), (double.parse(tempValue.toStringAsFixed(2))));
+                  }
           flListPlot.add(spot);
-          spot = FlSpot((i.toDouble()+offset), (value));
+            if(value>3){
+               spot = FlSpot((i.toDouble()+offset), 3);
+            }else{
+          spot = FlSpot((i.toDouble()+offset), (double.parse(value.toStringAsFixed(2))));
+            }
            if(i == DateTime.now().hour-globals.startTimeHour){
           globals.bacRound = double.parse(value.toStringAsFixed(2));
 
            }
           flListPlot.add(spot);
           }else{
-            spot = FlSpot(i.toDouble(), (value));
+            if(value>3){
+               spot = FlSpot(i.toDouble(), 3);
+            }else{
+            spot = FlSpot(i.toDouble(), (double.parse(value.toStringAsFixed(2))));
+            }
           if(i == DateTime.now().hour-globals.startTimeHour){
             globals.bacRound = double.parse(value.toStringAsFixed(2));
 
